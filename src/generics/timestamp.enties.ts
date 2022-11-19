@@ -7,11 +7,14 @@ export default class TimestampEntites {
 	})
 	createdAt: Date;
 
-	@UpdateDateColumn()
+	@UpdateDateColumn({
+		nullable: true,
+	})
 	updatedAt: Date;
 
 	@DeleteDateColumn({
 		update: false,
+		nullable: true,
 	})
 	deletedAt: Date;
 }

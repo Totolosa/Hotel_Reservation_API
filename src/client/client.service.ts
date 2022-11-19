@@ -12,6 +12,16 @@ export class ClientService {
 		private clientRepository: Repository<ClientEntity>,
 	) {}
 
+  async getClient(email : string) {
+    let client = await this.getClientByEmail(email);
+    if (!client) {
+      console.log(`GetClient : User with email ${email} do not exist`);
+      throw new NotFoundException("No user found with this email", {cause: new Error(), description: 'No user found' });
+    }
+    console.log('OK');
+    return client; 
+  }
+
   async createClient(data : CreateClientDto) {
     let exist = await this.getClientByEmail(data.email);
     if (exist) {
@@ -44,15 +54,21 @@ export class ClientService {
     return await this.clientRepository.save(client);
   }
   
+  async deleteClient(emailClient: string) {
+    let client = await this.getClientByEmail(emailClient);
+    if (!client)
+      throw new NotFoundException("No user found with this email", {cause: new Error(), description: 'No user found' });
+    return await this.clientRepository.remove(client);
+  }
+
   async getClientByEmail(email: string) {
     let client = await this.clientRepository.findOne({
       where: { email: email }
     });
-    if (!client) {
-
+    if (!client)
       return null;
-    }
     return client;
   }
+
 
 }
