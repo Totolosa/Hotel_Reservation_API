@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
-import TimestampEntites from "src/generics/timestamp.enties";
+import TimestampEntites from "../../generics/timestamp.enties";
+import { RoomEntity } from "../../room/entities/room.entity";
 
 
 @Entity('client')
@@ -33,8 +34,6 @@ export class ClientEntity extends TimestampEntites {
 	})
 	nationality: string;
 
-	// @OneToOne((type) => RoomEntity, (room) => room.reservation, {
-	// 	cascade: true,
-	// })
-	// reservation: RoomEntity;
+	@OneToOne((type) => RoomEntity, (room) => room.reservation)
+	reservation: RoomEntity;
 }

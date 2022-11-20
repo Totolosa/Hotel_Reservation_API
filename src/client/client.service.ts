@@ -12,20 +12,31 @@ export class ClientService {
 		private clientRepository: Repository<ClientEntity>,
 	) {}
 
+
+  async getAllClient() {
+    // let client = await this.getClientByEmail(email);
+    // if (!client) {
+    //   console.log(`GetClient : Client with email ${email} do not exist`);
+    //   throw new NotFoundException("No user found with this email", {cause: new Error(), description: 'No user found' });
+    // }
+    // return client; 
+
+    return await this.clientRepository.find();
+  }
+  
   async getClient(email : string) {
     let client = await this.getClientByEmail(email);
     if (!client) {
-      console.log(`GetClient : User with email ${email} do not exist`);
+      console.log(`GetClient : Client with email ${email} do not exist`);
       throw new NotFoundException("No user found with this email", {cause: new Error(), description: 'No user found' });
     }
-    console.log('OK');
     return client; 
   }
 
   async createClient(data : CreateClientDto) {
     let exist = await this.getClientByEmail(data.email);
     if (exist) {
-      console.log(`User ${exist.firstName} ${exist.lastName}, with email '${exist.email}' already exist`);
+      console.log(`CLient ${exist.firstName} ${exist.lastName}, with email '${exist.email}' already exist`);
       throw new ConflictException("This email already exist", {cause: new Error(), description: 'Duplicate e-mail' })
     }
     return await this.clientRepository.save(data);
@@ -34,7 +45,7 @@ export class ClientService {
   async updateClient(data: UpdateClientDto) {
     let client = await this.getClientByEmail(data.emailRequestor);
     if (!client)
-      throw new NotFoundException("No user found with this email", {cause: new Error(), description: 'No user found' });
+      throw new NotFoundException("No client found with this email", {cause: new Error(), description: 'No client found' });
     if (data.email && data.email != data.emailRequestor && await this.getClientByEmail(data.email)) {
       console.log(`Email '${data.email}' already exist`);
       throw new ConflictException("This email already exist", {cause: new Error(), description: 'e-mail already exist' })
@@ -57,7 +68,7 @@ export class ClientService {
   async deleteClient(emailClient: string) {
     let client = await this.getClientByEmail(emailClient);
     if (!client)
-      throw new NotFoundException("No user found with this email", {cause: new Error(), description: 'No user found' });
+      throw new NotFoundException("No client found with this email", {cause: new Error(), description: 'No client found' });
     return await this.clientRepository.remove(client);
   }
 

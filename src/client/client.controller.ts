@@ -7,6 +7,11 @@ import { UpdateClientDto } from './dto/update-client.dto';
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
+	@Get('/all')
+	async getAllClient() {
+		return await this.clientService.getAllClient();
+	}
+
 	@Get('/:email')
 	async getClient(@Param('email') email: string) {
 		return await this.clientService.getClient(email);
