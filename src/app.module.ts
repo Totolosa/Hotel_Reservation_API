@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ClientModule } from './client/client.module';
 import { ApartmentModule } from './apartment/apartment.module';
 import { RoomModule } from './room/room.module';
+import { ReservationModule } from './reservation/reservation.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -29,12 +29,10 @@ dotenv.config();
     ClientModule,
     ApartmentModule,
     RoomModule,
-    
+    ReservationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-  // constructor(private dataSource: DataSource) {}
-}
+export class AppModule {}
 

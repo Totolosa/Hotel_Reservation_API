@@ -19,6 +19,9 @@ export class ApartmentEntity extends TimestampEntites {
 	@Column()
 	city: string;
 
-	@OneToMany((type) => RoomEntity, (room) => room.apart)
+	@OneToMany((type) => RoomEntity, (room) => room.apart, {
+    nullable: true,
+		onDelete: 'SET NULL',
+  })
 	rooms: RoomEntity[];
 }

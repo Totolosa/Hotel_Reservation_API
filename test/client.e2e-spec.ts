@@ -79,101 +79,129 @@ describe('client', () => {
 
     // --------- POST ---------
 
-  it('(POST) /client --> Error 400 : ValidationPipe', () => {
-    return request(app.getHttpServer())
+  it('(POST) /client --> Error 400 : ValidationPipe', (done) => {
+    request(app.getHttpServer())
       .post('/api/client')
       .send(createClientDtoWrong)
       .expect(400)
+      // .end(done)
+      done();
   });
 
-  it('(POST) /client 1 --> 201', () => {
-    return request(app.getHttpServer())
+  it('(POST) /client 1 --> 201', (done) => {
+    request(app.getHttpServer())
       .post('/api/client')
       .send(createClientDto1)
       .expect(201)
+      // .end(done)
+      done();
   });
 
-  it('(POST) /client 2 --> 201', () => {
-    return request(app.getHttpServer())
+  it('(POST) /client 2 --> 201', (done) => {
+    request(app.getHttpServer())
       .post('/api/client')
       .send(createClientDto2)
       .expect(201)
+      // .end(done)
+      done();
   });
 
-  it('(POST) /client --> Error 409 : Conflict', () => {
-    return request(app.getHttpServer())
+  it('(POST) /client --> Error 409 : Conflict', (done) => {
+    request(app.getHttpServer())
       .post('/api/client')
       .send(createClientDto1)
       .expect(409)
+      // .end(done)
+      done();
   });
 
   // --------- GET ---------
 
-  it('(GET) /client/chez.nestor@gmail.com --> 200', () => {
-    return request(app.getHttpServer())
+  it('(GET) /client/chez.nestor@gmail.com --> 200', (done) => {
+    request(app.getHttpServer())
       .get('/api/client/chez.nestor@gmail.com')
       .expect(200)
+      // .end(done)
+      done();
   });
 
-  it('(GET) /client/all --> 200', () => {
-    return request(app.getHttpServer())
+  it('(GET) /client/all --> 200', (done) => {
+    request(app.getHttpServer())
       .get('/api/client/all')
       .expect(200)
+      // .end(done)
+      done();
   });
 
-  it('(GET) /client/chez.gaspar@gmail.com --> Error 404 : Not found', () => {
-    return request(app.getHttpServer())
+  it('(GET) /client/chez.gaspar@gmail.com --> Error 404 : Not found', (done) => {
+    request(app.getHttpServer())
       .get('/api/client/chez.gaspar@gmail.com')
       .expect(404)
+      // .end(done)
+      done();
   });
 
   // --------- PATCH ---------
 
-  it('(PATCH) /client --> Error 400 : ValidationPipe', () => {
-    return request(app.getHttpServer())
+  it('(PATCH) /client --> Error 400 : ValidationPipe', (done) => {
+    request(app.getHttpServer())
       .patch('/api/client/')
       .send(updateClientDtoWrong1)
       .expect(400)
+      // .end(done)
+      done();
   });
 
-  it('(PATCH) /client --> Error 404 : Not found', () => {
-    return request(app.getHttpServer())
+  it('(PATCH) /client --> Error 404 : Not found', (done) => {
+    request(app.getHttpServer())
       .patch('/api/client/')
       .send(updateClientDtoWrong2)
       .expect(404)
+      // .end(done)
+      done();
   });
 
-  it('(PATCH) /client --> Error 409 : Conflict', () => {
-    return request(app.getHttpServer())
+  it('(PATCH) /client --> Error 409 : Conflict', (done) => {
+    request(app.getHttpServer())
       .patch('/api/client/')
       .send(updateClientDtoWrong3)
       .expect(409)
+      // .end(done)
+      done();
   });
 
-  it('(PATCH) /client --> 200', () => {
-    return request(app.getHttpServer())
+  it('(PATCH) /client --> 200', (done) => {
+    request(app.getHttpServer())
       .patch('/api/client/')
       .send(updateClientDto)
       .expect(200)
+      // .end(done)
+      done();
   });
 
     // --------- DELETE ---------
   
-  it('(DELETE) /client/chez.nestor@gmail.com --> Error 404 : Not found', () => {
-    return request(app.getHttpServer())
+  it('(DELETE) /client/chez.nestor@gmail.com --> Error 404 : Not found', (done) => {
+    request(app.getHttpServer())
       .delete('/api/client/chez.nestor@gmail.com')
       .expect(404)
+      // .end(done)
+      done();
   });
 
-  it('(DELETE) /client/update@gmail.com 1 --> 200', () => {
-    return request(app.getHttpServer())
+  it('(DELETE) /client/update@gmail.com 1 --> 200', (done) => {
+    request(app.getHttpServer())
       .delete('/api/client/update@gmail.com')
       .expect(200)
+      // .end(done)
+      done();
   });
 
-  it('(DELETE) /client/toto.tata@gmail.com 2 --> 200', () => {
-    return request(app.getHttpServer())
+  it('(DELETE) /client/toto.tata@gmail.com 2 --> 200', (done) => {
+    request(app.getHttpServer())
       .delete('/api/client/toto.tata@gmail.com')
       .expect(200)
+      // .end(done)
+      done();
   });
 });

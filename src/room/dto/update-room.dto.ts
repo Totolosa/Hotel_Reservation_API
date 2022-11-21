@@ -1,18 +1,23 @@
 import { IsNotEmpty, IsNumber, IsEmail, IsOptional } from "class-validator";
+import { Type } from "class-transformer";
 export class UpdateRoomDto {
-	@IsEmail()
+	@IsNumber()
 	@IsNotEmpty()
-	emailRequestor: string;
+	@Type(() => Number)
+	id: number;
 	
 	@IsNumber()
 	@IsOptional()
-	number: string;
-
-	@IsNumber()
-	@IsOptional()
-	area: string;
+	@Type(() => Number)
+	number: number;
 	
 	@IsNumber()
 	@IsOptional()
-	price: string;
+	@Type(() => Number)
+	area: number;
+	
+	@IsNumber()
+	@IsOptional()
+	@Type(() => Number)
+	price: number;
 }

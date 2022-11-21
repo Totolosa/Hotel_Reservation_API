@@ -1,4 +1,4 @@
-import { ConflictException, HttpException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { ClientEntity } from './entities/client.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -12,15 +12,7 @@ export class ClientService {
 		private clientRepository: Repository<ClientEntity>,
 	) {}
 
-
   async getAllClient() {
-    // let client = await this.getClientByEmail(email);
-    // if (!client) {
-    //   console.log(`GetClient : Client with email ${email} do not exist`);
-    //   throw new NotFoundException("No user found with this email", {cause: new Error(), description: 'No user found' });
-    // }
-    // return client; 
-
     return await this.clientRepository.find();
   }
   
@@ -80,6 +72,4 @@ export class ClientService {
       return null;
     return client;
   }
-
-
 }

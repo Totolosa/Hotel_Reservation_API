@@ -40,7 +40,7 @@ $ npm run test:e2e
 - GET : /api/client/:email 
   - Get the client infos with the email sent in the URL Parameters (:email)
   - Return the client object
-- POST : http://localhost:3000/client/
+- POST : api/client/
   - Create a new client
   - Return the client created
   - DTO the use in the Body of request:
@@ -52,7 +52,7 @@ $ npm run test:e2e
     "birthDate": string, optional
     "nationality": string optional
 ```
-- PATCH : http://localhost:3000/client/
+- PATCH : api/client/
   - Update client infos
   - Return the client updated
   - DTO the use in the Body of request:
@@ -65,9 +65,72 @@ $ npm run test:e2e
     "birthDate": string, optional
     "nationality": string optional
 ```
-- DELETE : http://localhost:3000/client/:email
+- DELETE : api/client/:email
   - Delete the client with the email sent in the URL Parameters (:email)
   - Return the client deleted
+
+### Apartment :
+- GET : /api/apartment/all
+  - Get all apartment infos
+  - Return an array with all apartments
+- GET : /api/apartment/:id 
+  - Get the apartment infos with the id sent in the URL Parameters (:id)
+  - Return the apartment object
+- POST : api/apartment/
+  - Create a new apartment
+  - Return the apartment created
+  - DTO the use in the Body of request:
+```
+    "name": string,
+    "street": string, 
+    "zipCode": number, 
+    "city": string,
+```
+- PATCH : api/apartment/
+  - Update apartment infos
+  - Return the apartment updated
+  - DTO the use in the Body of request:
+```
+    "id": number,
+    "name": string, optional
+    "street": string, optional
+    "zipCode": number, optional
+    "city": string, optional
+```
+- DELETE : api/apartment/:id
+  - Delete the apartment with the id sent in the URL Parameters (:id)
+  - Return the apartment deleted
+
+### Room :
+- GET : /api/room/all
+  - Get all rooms infos
+  - Return an array with all rooms
+- GET : /api/room/:id 
+  - Get the room infos with the id sent in the URL Parameters (:id)
+  - Return the room object
+- POST : api/room/
+  - Create a new room
+  - Return the room created
+  - DTO the use in the Body of request:
+```
+    "number": number,
+    "area": number, 
+    "price": number, 
+    "idApartment": number, id of the apartment were is the room
+```
+- PATCH : api/room/
+  - Update room infos
+  - Return the room updated
+  - DTO the use in the Body of request:
+```
+    "id": number,
+    "number": number, optional
+    "area": number, optional
+    "price": number, optional
+```
+- DELETE : api/room/:id
+  - Delete the room with the id sent in the URL Parameters (:id)
+  - Return the room deleted
 
 ## Contact
 

@@ -1,27 +1,21 @@
-import { IsDateString, IsEmail, IsNotEmpty, IsOptional, IsPhoneNumber, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import {IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class CreateClientDto {
+export class CreateApartmentDto {
 	@IsString()
 	@IsNotEmpty()
-	firstName: string;
+	name: string;
 
 	@IsString()
 	@IsNotEmpty()
-	lastName: string;
+	street: string;
 	
-	@IsEmail()
+	@IsNumber()
 	@IsNotEmpty()
-	email: string;
-	
-	@IsPhoneNumber('FR')
-	@IsOptional()
-	phone?: string;
-	
-	@IsDateString()
-	@IsOptional()
-	birthDate?: string;
+	@Type(() => Number)
+	zipCode: number;
 	
 	@IsString()
-	@IsOptional()
-	nationality?: string;
+	@IsNotEmpty()
+	city: string;
 }

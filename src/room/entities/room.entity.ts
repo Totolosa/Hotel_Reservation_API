@@ -17,10 +17,16 @@ export class RoomEntity extends TimestampEntites {
 	@Column()
 	price: number;
 
-	@OneToOne((type) => ClientEntity, (client) => client.reservation)
+	@OneToOne((type) => ClientEntity, (client) => client.reservation, {
+		nullable: true,
+		onDelete: 'SET NULL',
+	})
 	reservation: ClientEntity;
 
-	@ManyToOne((type) => ApartmentEntity, (apart) => apart.rooms)
+	@ManyToOne((type) => ApartmentEntity, (apart) => apart.rooms, {
+		cascade: true,
+		onDelete: 'CASCADE',
+	})
   @JoinColumn()
 	apart: ApartmentEntity;
 }

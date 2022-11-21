@@ -3,8 +3,8 @@ import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
 import { RoomService } from './room.service';
 
-@Controller('room')
-export class RoomController {
+@Controller('reservation')
+export class ReservationController {
   constructor(private readonly roomService: RoomService) {}
 
 	@Get('/all')

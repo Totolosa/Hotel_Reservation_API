@@ -1,30 +1,34 @@
-import { Controller, Post, Body, Patch, Get, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Patch, Get, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { ApartmentService } from './apartment.service';
-// import { CreateRoomDto } from './dto/create-room.dto';
-// import { UpdateRoomDto } from './dto/update-room.dto';
-// import { RoomService } from './room.service';
+import { CreateApartmentDto } from './dto/create-apartment.dto';
+import { UpdateApartmentDto } from './dto/update-apartment.dto';
 
 @Controller('apartment')
 export class ApartmentController {
-  constructor(private readonly roomService: ApartmentService) {}
+  constructor(private readonly apartService: ApartmentService) {}
 
-	// @Get('/:id')
-	// async getRoom(@Param('email') email: string) {
-	// 	return await this.roomService.getRoom(email);
-	// }
+	@Get('/all')
+	async getAllApartments() {
+		return await this.apartService.getAllApartments();
+	}
 
-	// @Post()
-	// async createRoom(@Body() data: CreateRoomDto) {
-	// 	return await this.roomService.createRoom(data);
-	// }
+	@Get('/:id')
+	async getApartment(@Param('id', ParseIntPipe) id: number) {
+		return await this.apartService.getApartment(id);
+	}
 
-	// @Patch()
-	// async updateRoom(@Body() data: UpdateRoomDto) {
-	// 	return await this.roomService.updateRoom(data);
-	// }
+	@Post()
+	async createApartment(@Body() data: CreateApartmentDto) {
+		return await this.apartService.createApartment(data);
+	}
+
+	@Patch()
+	async updateApartment(@Body() data: UpdateApartmentDto) {
+		return await this.apartService.updateApartment(data);
+	}
 	
-	// @Delete('/:id')
-	// async deleteRoom(@Param('email') email: string) {
-	// 	return await this.roomService.deleteRoom(email);
-	// }
+	@Delete('/:id')
+	async deleteApartment(@Param('id', ParseIntPipe) id: number) {
+		return await this.apartService.deleteApartment(id);
+	}
 }

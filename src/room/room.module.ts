@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ApartmentService } from '../apartment/apartment.service';
+import { ApartmentEntity } from '../apartment/entities/apartment.entity';
 import { RoomEntity } from './entities/room.entity';
 import { RoomController } from './room.controller';
 import { RoomService } from './room.service';
@@ -7,10 +9,11 @@ import { RoomService } from './room.service';
 @Module({
   imports: [
 		TypeOrmModule.forFeature([
-			RoomEntity
+			RoomEntity, 
+			ApartmentEntity,
 		]),
 	],
   controllers: [RoomController],
-  providers: [RoomService]
+  providers: [RoomService, ApartmentService]
 })
 export class RoomModule {}

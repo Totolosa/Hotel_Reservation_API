@@ -1,15 +1,24 @@
 import { IsNotEmpty, IsNumber } from "class-validator";
+import { Type } from "class-transformer";
 
 export class CreateRoomDto {
 	@IsNumber()
 	@IsNotEmpty()
-	number: string;
-
-	@IsNumber()
-	@IsNotEmpty()
-	area: string;
+	@Type(() => Number)
+	number: number;
 	
 	@IsNumber()
 	@IsNotEmpty()
-	price: string;
+	@Type(() => Number)
+	area: number;
+	
+	@IsNumber()
+	@IsNotEmpty()
+	@Type(() => Number)
+	price: number;
+	
+	@IsNumber()
+	@IsNotEmpty()
+	@Type(() => Number)
+	idApartment: number;
 }

@@ -34,6 +34,9 @@ export class ClientEntity extends TimestampEntites {
 	})
 	nationality: string;
 
-	@OneToOne((type) => RoomEntity, (room) => room.reservation)
+	@OneToOne((type) => RoomEntity, (room) => room.reservation, {
+		nullable: true,
+		onDelete: 'SET NULL',
+	})
 	reservation: RoomEntity;
 }

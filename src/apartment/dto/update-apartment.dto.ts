@@ -1,31 +1,26 @@
-import { IsDateString, IsEmail, IsNotEmpty, IsOptional, IsPhoneNumber, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import {IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
-export class UpdateClientDto {
-	@IsEmail()
+export class UpdateApartmentDto {
+	@IsNumber()
 	@IsNotEmpty()
-	emailRequestor: string;
+	@Type(() => Number)
+	id: number;
 	
 	@IsString()
 	@IsOptional()
-	firstName: string;
+	name: string;
 
 	@IsString()
 	@IsOptional()
-	lastName: string;
+	street: string;
 	
-	@IsEmail()
+	@IsNumber()
 	@IsOptional()
-	email: string;
-	
-	@IsPhoneNumber('FR')
-	@IsOptional()
-	phone?: string;
-	
-	@IsDateString()
-	@IsOptional()
-	birthDate?: string;
+	@Type(() => Number)
+	zipCode: number;
 	
 	@IsString()
 	@IsOptional()
-	nationality?: string;
+	city: string;
 }
