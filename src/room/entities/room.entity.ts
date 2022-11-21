@@ -21,6 +21,7 @@ export class RoomEntity extends TimestampEntites {
 		nullable: true,
 		onDelete: 'SET NULL',
 	})
+	@JoinColumn()
 	reservation: ClientEntity;
 
 	@ManyToOne((type) => ApartmentEntity, (apart) => apart.rooms, {

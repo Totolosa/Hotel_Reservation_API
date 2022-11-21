@@ -1,34 +1,38 @@
 import { Controller, Post, Body, Patch, Get, Param, Delete, ParseIntPipe } from '@nestjs/common';
-import { CreateRoomDto } from './dto/create-room.dto';
-import { UpdateRoomDto } from './dto/update-room.dto';
-import { RoomService } from './room.service';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { ReservationService } from './reservation.service';
 
 @Controller('reservation')
 export class ReservationController {
-  constructor(private readonly roomService: RoomService) {}
+  constructor(private readonly reservationService: ReservationService) {}
 
 	@Get('/all')
-	async getAllRooms() {
-		return await this.roomService.getAllRooms();
+	async getAllReservations() {
+		return await this.reservationService.getAllReservations();
 	}
 
-	@Get('/:id')
-	async getRoom(@Param('id', ParseIntPipe) id: number) {
-		return await this.roomService.getRoom(id);
+	@Get('/client/:email')
+	async getReservationByClient(@Param('email') email: string) {
+		return await this.reservationService.getReservationByClient(email);
+	}
+
+	@Get('/room/:id')
+	async getReservationByRoom(@Param('id', ParseIntPipe) id: number) {
+		return await this.reservationService.getReservationByRoom(id);
 	}
 
 	@Post()
-	async createRoom(@Body() data: CreateRoomDto) {
-		return await this.roomService.createRoom(data);
+	async createReservation(@Body() data: CreateReservationDto) {
+		return await this.reservationService.createReservation(data);
 	}
 
-	@Patch()
-	async updateRoom(@Body() data: UpdateRoomDto) {
-		return await this.roomService.updateRoom(data);
+	@Delete('/client/:email')
+	async deleteReservationByClient(@Param('email') email: string) {
+		return await this.reservationService.deleteReservationByClient(email);
 	}
-	
-	@Delete('/:id')
-	async deleteRoom(@Param('id', ParseIntPipe) id: number) {
-		return await this.roomService.deleteRoom(id);
+
+	@Delete('/room/:id')
+	async deleteReservationByRoom(@Param('id', ParseIntPipe) id: number) {
+		return await this.reservationService.deleteReservationByRoom(id);
 	}
 }

@@ -20,7 +20,7 @@ export class ClientService {
     let client = await this.getClientByEmail(email);
     if (!client) {
       console.log(`GetClient : Client with email ${email} do not exist`);
-      throw new NotFoundException("No user found with this email", {cause: new Error(), description: 'No user found' });
+      throw new NotFoundException("No client found with this email", {cause: new Error(), description: 'No client found' });
     }
     return client; 
   }
@@ -64,10 +64,13 @@ export class ClientService {
     return await this.clientRepository.remove(client);
   }
 
-  async getClientByEmail(email: string) {
-    let client = await this.clientRepository.findOne({
-      where: { email: email }
-    });
+  async getClientByEmail(email: string, relations?: any) {
+    let params:  any;
+		if (relations) 
+      params = { where: { email: email }, relations: relations };
+		else 
+      params = { where: { email: email } };
+    let client = await this.clientRepository.findOne(params);
     if (!client)
       return null;
     return client;
