@@ -7,7 +7,7 @@ API for Chez Nestor reservation Hotel, build with [Nest](https://nestjs.com/) (9
 
 ## Installation
 
-0) Install Nest and Mysql if you don't have th
+0) Pre-requisites : Install Node and Mysql
 1) Create a Mysql DB
 2) Modify the .env file with your values.
 3) Run:
@@ -40,7 +40,7 @@ $ npm run test:e2e
 - GET : /api/client/:email 
   - Get the client infos with the email sent in the URL Parameters (:email)
   - Return the client object
-- POST : api/client/
+- POST : /api/client/
   - Create a new client
   - Return the client created
   - DTO the use in the Body of request:
@@ -52,7 +52,7 @@ $ npm run test:e2e
     "birthDate": string, optional
     "nationality": string optional
 ```
-- PATCH : api/client/
+- PATCH : /api/client/
   - Update client infos
   - Return the client updated
   - DTO the use in the Body of request:
@@ -65,7 +65,7 @@ $ npm run test:e2e
     "birthDate": string, optional
     "nationality": string optional
 ```
-- DELETE : api/client/:email
+- DELETE : /api/client/:email
   - Delete the client with the email sent in the URL Parameters (:email)
   - Return the client deleted
 
@@ -76,7 +76,7 @@ $ npm run test:e2e
 - GET : /api/apartment/:id 
   - Get the apartment infos with the id sent in the URL Parameters (:id)
   - Return the apartment object
-- POST : api/apartment/
+- POST : /api/apartment/
   - Create a new apartment
   - Return the apartment created
   - DTO the use in the Body of request:
@@ -86,7 +86,7 @@ $ npm run test:e2e
     "zipCode": number, 
     "city": string,
 ```
-- PATCH : api/apartment/
+- PATCH : /api/apartment/
   - Update apartment infos
   - Return the apartment updated
   - DTO the use in the Body of request:
@@ -97,7 +97,7 @@ $ npm run test:e2e
     "zipCode": number, optional
     "city": string, optional
 ```
-- DELETE : api/apartment/:id
+- DELETE : /api/apartment/:id
   - Delete the apartment with the id sent in the URL Parameters (:id)
   - Return the apartment deleted
 
@@ -108,7 +108,7 @@ $ npm run test:e2e
 - GET : /api/room/:id 
   - Get the room infos with the id sent in the URL Parameters (:id)
   - Return the room object
-- POST : api/room/
+- POST : /api/room/
   - Create a new room
   - Return the room created
   - DTO the use in the Body of request:
@@ -118,7 +118,7 @@ $ npm run test:e2e
     "price": number, 
     "idApartment": number, id of the apartment were is the room
 ```
-- PATCH : api/room/
+- PATCH : /api/room/
   - Update room infos
   - Return the room updated
   - DTO the use in the Body of request:
@@ -128,9 +128,34 @@ $ npm run test:e2e
     "area": number, optional
     "price": number, optional
 ```
-- DELETE : api/room/:id
+- DELETE : /api/room/:id
   - Delete the room with the id sent in the URL Parameters (:id)
   - Return the room deleted
+  
+### Reservation :
+- GET : /api/reservation/all
+  - Get all reservations infos
+  - Return an array with all reservations : client + room
+- GET : /api/reservation/client/:email
+  - Get the reservation infos with the client email sent in the URL Parameters (:email) 
+  - Return the reservation object : client + room
+- GET : /api/reservation/room/:id
+  - Get the reservation infos with the room id sent in the URL Parameters (:id) 
+  - Return the reservation object : client + room
+- POST : /api/reservation/
+  - Create a new reservation
+  - Return the reservation created : client + room
+  - DTO the use in the Body of request:
+```
+    "clientEmail": number, the client email
+    "roomId": number, the id of the room
+```
+- DELETE : /api/reservation/client/:email
+  - Delete the reservation with the client email sent in the URL Parameters (:email)
+  - Return the client with the room reservation deleted
+- DELETE : /api/reservation/room/:id
+  - Delete the reservation with the room id sent in the URL Parameters (:id)
+  - Return the room with the client reservation deleted
 
 ## Contact
 
